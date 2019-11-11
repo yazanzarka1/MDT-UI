@@ -1,4 +1,4 @@
-# app
+# MDT-UI
 
 ## Project setup
 ```
