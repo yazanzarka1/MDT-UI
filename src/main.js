@@ -9,9 +9,15 @@ import router from './router'
 ///import Axios from 'axios'
 
 Vue.config.productionTip = false
-new Vue({
+const app = new Vue({
   store,
   vuetify,
   router,
   render: h => h(App)
 }).$mount('#app')
+
+export default app
+
+global.app = app;
+global.appData = app.$store.state;
+global.store = store;

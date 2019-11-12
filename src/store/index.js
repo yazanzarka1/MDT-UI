@@ -7,7 +7,7 @@ import dashboard from '@/modules/dashboard.js'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
  
   modules: {
     users,
@@ -15,3 +15,5 @@ export default new Vuex.Store({
     dashboard
   }
 })
+
+export default store
