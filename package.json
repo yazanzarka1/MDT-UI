@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --dest E:/csrage3/server-files/client_packages/cs_packages/cef",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

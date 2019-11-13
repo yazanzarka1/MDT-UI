@@ -21,3 +21,4 @@ export default app
 global.app = app;
 global.appData = app.$store.state;
 global.store = store;
+global.router = router;
