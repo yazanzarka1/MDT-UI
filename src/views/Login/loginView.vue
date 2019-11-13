@@ -44,7 +44,7 @@ export default {
     }
   },
   computed:{
-    ...mapGetters([])
+    ...mapGetters(['loggedIn'])
   },
   methods:{
     async validateUser(e){
@@ -54,7 +54,8 @@ export default {
           if(!res.data.hasOwnProperty(k))continue;
             if(res.data[k].badgeid == this.badgeid && res.data[k].password == this.password){
               this.alertUser({color:"success", text: "logged in successfully"})
-              this.$router.push('/dashboard')
+              this.$router.push('/dashboard/index')
+              this.toggleLogIn(true)
               break;
             }else{
               this.alertUser({color: "error", text: "logging in failed"})
@@ -64,7 +65,7 @@ export default {
         e.preventDefault();
     },
 
-    ...mapActions(['toggleLoading','alertUser'])
+    ...mapActions(['toggleLoading','alertUser','toggleLogIn'])
   },
   created(){
   }

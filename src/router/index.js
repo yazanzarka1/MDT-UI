@@ -14,7 +14,12 @@ const routes = [
     path: '/dashboard',
     name: 'dashboard',
     component: () => import('@/views/dashboard.vue'),
-    children: [{
+    children: [
+      {
+        path:'index',
+        component: () => import('@/views/dashboardchildren/index.vue')
+      },
+      {
       path:'searchname',
       component: () => import('@/views/dashboardchildren/searchByName.vue')
     },

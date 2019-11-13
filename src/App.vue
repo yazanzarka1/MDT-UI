@@ -1,25 +1,31 @@
 <template>
 <div class="App" id="scroll" >
-  <v-app class="ma-0 pa-0 main">
-    <div class="fix">
-     <v-system-bar class="mb-2" window color="primary">
+  <v-app >
+    <div class="fix mb-0 pa-0">
+     <v-system-bar window color="primary">
         <v-btn icon text>
-        <v-icon color="red">mdi-close</v-icon>
+            <v-icon color="red">mdi-close</v-icon>
         </v-btn>
         <v-spacer/>
         <h5 style="color:white">Los Santos Police Department - Mobile Data Terminal</h5>
       </v-system-bar>
-       <v-snackbar top absolute style="top:2.5rem" v-model="notification.active" :color="notification.color">
+       <v-snackbar top absolute :timeout="2000" style="top:2.5rem" v-model="notification.active" :color="notification.color">
       {{this.notification.text}}
-    </v-snackbar>
+      </v-snackbar>
+      <v-toolbar v-if="loggedIn" dense class="secondary">
+          <v-toolbar-title >
+            <h5 class="white--text">Los Santos Police Department</h5>  
+          </v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-toolbar-items v-for="item in menuItems" :key="item.id" >
+             <v-btn text class="white--text" :to="item.to"><v-icon left>mdi-{{item.icon}}</v-icon>{{item.name}}</v-btn>
+          </v-toolbar-items>
+      </v-toolbar>
     </div>
-      <v-container fluid> 
-        <v-card min-height="80vh" :loading='this.loading' class="overflow-hidden">
-          <v-content class="overflow-hidden">
-            <router-view/>
-          </v-content>
-        </v-card >
-      </v-container>
+    <div>
+      <router-view/>
+    </div>
+
   </v-app>
 </div>
 
@@ -32,10 +38,46 @@ export default {
       ...mapActions(['fetchUsers'])
     },
   data: function(){
-    return{}
+    return{menuItems:[
+                {   
+                    id:1,
+                    name : "Dashboard",
+                    icon : 'view-dashboard',
+                    to : '/dashboard/index'
+                },
+                {   
+                    id:2,
+                    name : "Search Name",
+                    icon : 'account-search',
+                    to : '/dashboard/searchname'
+                },
+                {
+                    id:3,
+                    name: "Search Plate",
+                    icon:'car',
+                    to : '/dashboard/searchplate'
+                },
+                {
+                    id:4,
+                    name: "Bolo",
+                    icon:'book-search',
+                    to : '/dashboard/bolo'
+                },
+                {
+                    id:5,
+                    name: "911/311 calls",
+                    icon:'phone-ring',
+                    to : '/dashboard/call-log'
+                },
+                {
+                    id:6,
+                    name:"Log out",
+                    icon:'logout'
+                }
+            ]}
   },
   computed:{
-    ...mapGetters({loading: 'loading', notification: 'notification'} )
+    ...mapGetters({loggedIn:'loggedIn', notification: 'notification', menuActive:'menuactive'} )
   },
   created(){
   }

@@ -5,13 +5,17 @@ const state = {
         text:'',
         color:'',
         active: false
-    }
+    },
+    menuactive: false
 };
 
 const getters = {
     loading:(state)=>{return state.loading},
     notification:(state)=>{
         return state.notification
+    },
+    menuactive:(state)=>{
+        return  state.menuactive
     }
 };
 
