@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import users from '@/modules/users.js'
+import users from '@/modules/officer.js'
 import app from '@/modules/app.js'
 import dashboard from '@/modules/dashboard.js'
 
