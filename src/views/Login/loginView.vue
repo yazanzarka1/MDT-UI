@@ -16,7 +16,7 @@
                     <v-text-field label="Badge Number" outlined class="pt-4" rounded v-model="badgeid"></v-text-field>
     
                     <v-text-field label="Password" outlined rounded type="password" v-model="password"></v-text-field>
-    
+                    
                     <div class="d-flex dark mb-2">
     
                         <v-btn width="100%" @click="validateUser">Submit</v-btn>
@@ -58,7 +58,7 @@ export default {
                     if (!res.data.hasOwnProperty(k)) continue;
                     if (res.data[k].badgeid == this.badgeid && res.data[k].password == this.password) {
                         this.alertUser({ color: "success", text: "logged in successfully" })
-                        this.$router.push('/dashboard/index')
+                        this.$router.push('/dashboard')
                         this.toggleLogIn(true)
                         break;
                     } else {

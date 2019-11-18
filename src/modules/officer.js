@@ -1,4 +1,5 @@
 import ax from 'axios';
+import { Store } from 'vuex';
 const state = {
     user:{
         loggedIn : false,
@@ -23,10 +24,9 @@ const actions = {
         commit('toggleLogIn',arg)
     },
 
-    updateOfficer({commit}, arg){
-      console.log("Updated Officer Received");
-        console.log(arg)
+    updateOfficer({commit, dispatch}, arg){
         commit('updateOfficer',arg)
+        dispatch('alertUser', {text: "Updated status", color:"success"})
     }
 }
 
