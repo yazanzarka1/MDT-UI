@@ -41,17 +41,17 @@ export default {
     return{
        menuItems: [{
                     name: "Citizen",
-                    icon: 'view-dashboard',
+                    icon: 'face-recognition',
                     to: '/search/person'
                 },
                 {
                     name: "Property",
-                    icon: 'shield-search',
+                    icon: 'home-outline',
                     to: '/search/property'
                 },
                 {
                     name: "Vehicle",
-                    icon: 'book-search',
+                    icon: 'car-info',
                     to: '/search/vehicle'
                 }]
     }

@@ -56,7 +56,7 @@ export default {
                     id: 2,
                     name: "Search",
                     icon: 'shield-search',
-                    to: '/search'
+                    to: '/search/person'
                 },
                 {
                     id: 3,
@@ -79,7 +79,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters({ officer: 'officer', notification: 'notification', menuActive: 'menuactive' })
+        ...mapGetters({ officer: 'officer', notification: 'notification', menuActive: 'menuactive',loading: 'loading' })
     },
     created() {}
 }

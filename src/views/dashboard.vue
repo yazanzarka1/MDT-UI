@@ -328,7 +328,7 @@ export default {
             var month = currentDate.getUTCMonth()
             var day = currentDate.getUTCDay()
             var year = currentDate.getUTCFullYear()
-            var dayArr =["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+            var dayArr =[ "Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
             var MonthArr = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
             function correctDate(){
             if(date > 3 && date <= 20){
@@ -358,6 +358,7 @@ export default {
     },
     created(){
         this.getDate()
+        this.updateOfficer();
     }
 }
 </script>
