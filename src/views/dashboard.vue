@@ -162,9 +162,9 @@ export default {
                 loggedIn: false,
                 rank: "POIII",
                 name: "Michael Roland",
-                callsign: "",
+                callsign: this.$store.getters.officer.callsign,
                 duty: this.$store.getters.officer.duty,
-                partner: ""
+                partner: this.$store.getters.officer.partner
             },
             calls: [{
                     id: 1,

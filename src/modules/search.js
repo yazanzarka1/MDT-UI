@@ -59,14 +59,13 @@ const getters = {
 
 const actions = {
     async getSearch({commit,dispatch},searchQuery){
-         var response = await ax.get("https://my-json-server.typicode.com/yazanzarka1/fakeapi/citizens")
-         var result = []
-         for(var i = 0; i < response.data.length; i++){
-             if(response.data[i].name.indexOf(searchQuery) > -1){
-                 result.push(response.data[i])
-             }
-            commit('getSearch', result)
-            } 
+     ax.get("https://my-json-server.typicode.com/yazanzarka1/fakeapi/citizens").then(res => {
+         console.log(res)
+     }).then(res => {
+         const {count, entries} = res
+         console.log(entries)
+     }).finally(()=> {
+     })
     },
     addPerson({commit}, person){
         console.log(person)

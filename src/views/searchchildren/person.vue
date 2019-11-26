@@ -1,30 +1,31 @@
 <template>
-    <v-form v-model="searchValid">
         <v-container>
             <v-row>
-                <v-col cols="12" md="4">
-                    <div class="d-flex align-baseline">
-                        <v-text-field v-model="name" :rules="nameRules" :counter="20" label="Full Name" append-icon="mdi-card-search-outline" required clearable></v-text-field>
-                        <v-btn small class="ml-4" @click="requestSearch()">Search
-                            <v-icon right>mdi-database-search</v-icon>
-                        </v-btn>
-                    </div>
-                    <v-row>
-                        <v-col cols="12" md="12" class="d-flex">
-                            <h4 class="">Showing results for:</h4>
-                            <span class="ml-2">{{name}}</span>
-                        </v-col>
-                        <v-col>
-                            <v-card class="secondary pa-2" height="25rem" id="scroll">
-                                <v-btn color="info" block small class="my-2" elevation="5" v-for="(result, index) in searchResults" :key="index" @click="addPerson(searchResults[index])">
-                                    <span class="white--text">{{searchResults.length != 0 ? result.name : "No Data found"}}</span>
-                                </v-btn>
-                            </v-card>
-                        </v-col>
-                    </v-row>
+                <v-col cols="12" md="12">
+                    <v-card color="secondary">
+                        <v-card-text>
+                     <v-autocomplete
+        v-model="model"
+        :items="items"
+        :loading="isLoading"
+        :search-input.sync="search"
+        color="white"
+        dark
+        hide-no-data
+        hide-selected
+        item-text="Description"
+        item-value="Person"
+        label="Search Database for citizens"
+        placeholder="Start typing to Search"
+        prepend-icon="mdi-database-search"
+        return-object
+      ></v-autocomplete>
+                        </v-card-text>
+                    </v-card>
                 </v-col>
-                <v-divider :vertical="true" aria-orientation="vertical" role="presentation"></v-divider>
-                <v-col cols="12" md="7" style="height: 600px" id="scroll">
+             </v-row>
+                <v-divider  aria-orientation="horizental" role="presentation"></v-divider>
+                <v-col cols="12" md="12" id="scroll">
                     <v-row>
                         <v-col cols="6">
                             <v-card height="17rem">
@@ -229,16 +230,14 @@
                         </v-col>
                     </v-row>
                 </v-col>
-            </v-row>
+
         </v-container>
-    </v-form>
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex';
 export default {
     data() {
         return {
-            searchVaild: false,
             editEnabled: false,
             name: '',
             rules: [v => v.length <= 200 || 'Max 200 characters'],
@@ -247,6 +246,13 @@ export default {
                 v => v.length <= 20 || 'Name must be less than 20 characters',
                 v => v.length > 3 || 'Name must be more than than 3 characters',
             ],
+            
+              descriptionLimit: 60,
+              entries: [],
+              isLoading: false,
+              model: null,
+              search: null,
+
         }
     },
     methods: {
@@ -264,7 +270,41 @@ export default {
         ...mapActions(['getSearch', 'alertUser', 'addPerson'])
     },
     computed: {
-        ...mapGetters(['searchResults', 'personGetter'])
+        ...mapGetters(['searchResults', 'personGetter']),
+              fields () {
+        if (!this.model) return []
+
+        return Object.keys(this.model).map(key => {
+          return {
+            key,
+            value: this.model[key] || 'n/a',
+          }
+        })
+      },
+      items () {
+        return this.entries.map(entry => {
+          const Description = entry.Description.length > this.descriptionLimit
+            ? entry.Description.slice(0, this.descriptionLimit) + '...'
+            : entry.Description
+
+          return Object.assign({}, entry, { Description })
+        })
+      },
+ 
+    },
+    watch: {
+      search (val) {
+        // Items have already been loaded
+        if (this.items.length > 0) return
+
+        // Items have already been requested
+        if (this.isLoading) return
+
+        this.isLoading = true
+
+        // Lazily load input items
+        
+      },
     }
 }
 </script>
