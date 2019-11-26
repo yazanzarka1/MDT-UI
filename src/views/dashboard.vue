@@ -34,12 +34,12 @@
                                 <h4 class="mb-4"> Current Callsign:</h4>
                                 <v-chip class="ml-2 ">{{officer.callsign.length > 3 ? officer.callsign : "N/A"}}</v-chip>
                             </div>
-                            <v-text-field v-model="localUser.callsign" dense clearable append-icon="mdi-police-badge" label="Callsign" rounded outlined></v-text-field>
+                            <v-text-field v-model="localUser.callsign" dense   append-icon="mdi-police-badge" label="Callsign" rounded outlined></v-text-field>
                             <div class="d-flex">
                                 <h4 class="mb-4"> Current Partner:</h4>
                                 <v-chip class="mx-2">{{officer.partner.length > 3 ? officer.partner : "N/A"}}</v-chip>
                             </div>
-                            <v-text-field v-model="localUser.partner" dense clearable append-icon="mdi-human-greeting" label="Partner With:" rounded outlined></v-text-field>
+                            <v-text-field v-model="localUser.partner" dense  append-icon="mdi-human-greeting" label="Partner With:" rounded outlined></v-text-field>
                             <h4>Availablity:</h4>
                             <v-chip :color="officer.duty == true ? 'success' : 'error' ">{{officer.duty == true ? 'Available for calls' : 'Not available for calls' }}</v-chip>
                             <v-switch v-model="localUser.duty" class="custom-red" false-value="false" color="success"> <span class="error--text">10-7</span>
@@ -162,9 +162,9 @@ export default {
                 loggedIn: false,
                 rank: "POIII",
                 name: "Michael Roland",
-                callsign: this.$store.getters.officer.callsign,
-                duty: this.$store.getters.officer.duty,
-                partner: this.$store.getters.officer.partner
+                callsign: '',
+                duty: '',
+                partner: ''
             },
             calls: [{
                     id: 1,
