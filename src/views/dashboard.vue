@@ -331,7 +331,7 @@ export default {
             var dayArr =[ "Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
             var MonthArr = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
             function correctDate(){
-            if(date > 3 && date <= 20){
+            if(date > 3 || date <= 20){
                 return `${date}th`
             }else if(date < 4){
                 if(date == 1){
@@ -349,6 +349,8 @@ export default {
                 }else{
                     return `${date}rd`
                 }
+            }else{
+                return `${date}th`
             }
             }
             this.dayAndDate = `${dayArr[day]} ${correctDate()}, ${MonthArr[month]} ${year}`
