@@ -13,29 +13,39 @@ const routes = [
   {
     path: '/dashboard',
     name: 'dashboard',
-    component: () => import('@/views/dashboard.vue'),
+    component: () => import('@/views/dashboard.vue')
+  },
+  {
+    path: '/bolo',
+    name: 'bolo',
+    component: () => import('@/views/bolo.vue')
+  },
+  {
+    path: '/call-log',
+    name: 'calls',
+    component: () => import('@/views/call-log.vue')
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: () => import('@/views/search.vue'),
     children: [
       {
-        path:'index',
-        component: () => import('@/views/dashboardchildren/index.vue')
+        path: 'person',
+        component: () => import('@/views/searchchildren/person.vue')
       },
       {
-      path:'searchname',
-      component: () => import('@/views/dashboardchildren/searchByName.vue')
-    },
-    {
-      path:'searchplate',
-      component: () => import('@/views/dashboardchildren/searchByPlate.vue')
-    },
-    {
-      path:'bolo',
-      component: () => import('@/views/dashboardchildren/bolo.vue')
-    },
-    {
-      path:'call-log',
-      component: () => import('@/views/dashboardchildren/call-log.vue')
-    }]
+        path: 'property',
+        component: () => import('@/views/searchchildren/property.vue')
+      },
+      {
+        path: 'vehicle',
+        component: () => import('@/views/searchchildren/vehicle.vue')
+      }
+
+    ]
   },
+
   { path: "*", component: () => import("@/views/404.vue") }
 ]
 
